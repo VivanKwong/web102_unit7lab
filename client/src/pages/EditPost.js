@@ -5,6 +5,7 @@ import { supabase } from '../client'
 
 const EditPost = ({data}) => {
 
+<<<<<<< HEAD
     const { id } = useParams();
     const postId = parseInt(id, 10); // Convert id to a number
     const post = data.find(item => item.id === postId);
@@ -30,12 +31,26 @@ const EditPost = ({data}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         updatePost();
+=======
+    const {id} = useParams();
+    const [post, setPost] = useState({id: null, title: "", author: "", description: ""});
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setPost( (prev) => {
+            return {
+                ...prev,
+                [name]:value,
+            }
+        })
+>>>>>>> 04481e74ed2103b8931cc828696fb7bc1f39db42
     }
 
     return (
         <div>
             <form onSubmit={updatePost}>
                 <label for="title">Title</label> <br />
+<<<<<<< HEAD
                 <input type="text" id="title" name="title" value={post.title} onChange={updatePost}/><br />
                 <br/>
 
@@ -54,6 +69,18 @@ const EditPost = ({data}) => {
                     <option value="pink">Pink</option>
                     <option value="rainbow">Rainbow</option>
                 </select>
+=======
+                <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />
+                <br/>
+
+                <label for="author">Author</label><br />
+                <input type="text" id="author" name="author" value={post.author} onChange={handleChange} /><br />
+                <br/>
+
+                <label for="description">Description</label><br />
+                <textarea rows="5" cols="50" id="description" value={post.description} onChange={handleChange} >
+                </textarea>
+>>>>>>> 04481e74ed2103b8931cc828696fb7bc1f39db42
                 <br/>
                 <input type="submit" value="Update Crewmate" />
                 <button className="deleteButton" onClick={deletePost}>Delete</button>
